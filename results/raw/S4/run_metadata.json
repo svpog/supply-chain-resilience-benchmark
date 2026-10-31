@@ -1,0 +1,9 @@
+{
+  "series": "S4",
+  "n_configs": 18,
+  "n_runs_per_config": 100,
+  "total_runs": 1800,
+  "valid_runs": 1787,
+  "elapsed_seconds": 309.79,
+  "timestamp": "2026-10-31T08:59:18"
+}

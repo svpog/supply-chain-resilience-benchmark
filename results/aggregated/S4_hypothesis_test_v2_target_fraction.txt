@@ -1,0 +1,111 @@
+========================================================================
+СЕРІЯ S4: ВПЛИВ ТИПУ ТА ІНТЕНСИВНОСТІ ЗБОЇВ НА RESILIENCE
+Гіпотеза H5: cluster < node_failure (більша втрата resilience)
+========================================================================
+
+Bonferroni-коригований поріг: α = 0.05/18 = 0.0028
+Кількість тестів: 18 (2 топології × 3 рівні × 3 пари)
+CVaR рівень: α = 10%
+
+────────────────────────────────────────────────────────────────────────
+ОПИСОВА СТАТИСТИКА (valid runs)
+────────────────────────────────────────────────────────────────────────
+Topology       Type                Int     n    ρ_med   ρ_CVaR    ρ_IQR  R_rb_med              CI 95%
+────────────────────────────────────────────────────────────────────────
+dense          node_failure        low   100  0.9970  0.9854  0.0059  0.9000    [0.9960, 0.9980]
+dense          node_failure        mid   100  0.9881  0.9712  0.0102  0.8000    [0.9871, 0.9892]
+dense          node_failure       high   100  0.9755  0.9381  0.0225  0.7000    [0.9703, 0.9792]
+dense          edge_degradation    low   100  1.0000  1.0000  0.0000  1.0000    [1.0000, 1.0000]
+dense          edge_degradation    mid   100  1.0000  1.0000  0.0000  1.0000    [1.0000, 1.0000]
+dense          edge_degradation   high   100  1.0000  1.0000  0.0000  1.0000    [1.0000, 1.0000]
+dense          cluster             low   100  0.9960  0.9909  0.0026  0.9000    [0.9950, 0.9970]
+dense          cluster             mid   100  0.9876  0.9722  0.0119  0.7200    [0.9857, 0.9894]
+dense          cluster            high   100  0.9684  0.9504  0.0165  0.6000    [0.9671, 0.9713]
+hierarchical   node_failure        low    99  0.9895  0.9536  0.0146  0.6667    [0.9856, 0.9925]
+hierarchical   node_failure        mid    95  0.9688  0.9287  0.0266  0.4242    [0.9634, 0.9718]
+hierarchical   node_failure       high    93  0.9307  0.8701  0.0348  0.2424    [0.9238, 0.9367]
+hierarchical   edge_degradation    low   100  1.0000  0.9999  0.0000  1.0000    [1.0000, 1.0000]
+hierarchical   edge_degradation    mid   100  1.0000  0.9941  0.0000  1.0000    [1.0000, 1.0000]
+hierarchical   edge_degradation   high   100  0.9961  0.9701  0.0094  0.9485    [0.9941, 0.9976]
+hierarchical   cluster             low   100  0.9895  0.9730  0.0078  0.6818    [0.9886, 0.9908]
+hierarchical   cluster             mid   100  0.9638  0.9261  0.0223  0.4545    [0.9577, 0.9661]
+hierarchical   cluster            high   100  0.9368  0.8881  0.0334  0.4242    [0.9284, 0.9433]
+
+Примітка: cluster intensity задана через target_fraction ∈ {0.10, 0.20, 0.30}
+  (~5/10/15 вузлів для N=50), що забезпечує топологічно-нейтральне дозування.
+Примітка: edge_degradation при low/mid інтенсивності дає ρ=1.0 через запас
+  потужності геометричних ребер. Ефект помітний лише в R_rb при high (p_e=0.40, γ=0.60).
+
+────────────────────────────────────────────────────────────────────────
+РЕЗУЛЬТАТИ MANN-WHITNEY U-ТЕСТІВ (Bonferroni)
+────────────────────────────────────────────────────────────────────────
+Topology        Int  Pair                                       p-value   Cliff d      Effect    Sig
+────────────────────────────────────────────────────────────────────────
+dense           low  Node failure vs Edge degrad.            7.6860e-32    -0.870       large    YES
+dense           low  Node failure vs Cluster                 3.5459e-01    +0.076  negligible     no
+dense           low  Edge degrad. vs Cluster                 1.5848e-34    +0.920       large    YES
+dense           mid  Node failure vs Edge degrad.            8.0458e-38    -0.980       large    YES
+dense           mid  Node failure vs Cluster                 2.7300e-01    +0.090  negligible     no
+dense           mid  Edge degrad. vs Cluster                 2.1417e-38    +0.990       large    YES
+dense          high  Node failure vs Edge degrad.            2.1533e-38    -0.990       large    YES
+dense          high  Node failure vs Cluster                 3.3786e-03    +0.240       small     no
+dense          high  Edge degrad. vs Cluster                 5.6193e-39    +1.000       large    YES
+hierarchical    low  Node failure vs Edge degrad.            3.6761e-38    -0.995       large    YES
+hierarchical    low  Node failure vs Cluster                 8.1028e-01    +0.020  negligible     no
+hierarchical    low  Edge degrad. vs Cluster                 1.1432e-38    +1.000       large    YES
+hierarchical    mid  Node failure vs Edge degrad.            1.7802e-35    -0.990       large    YES
+hierarchical    mid  Node failure vs Cluster                 5.1464e-03    +0.232       small     no
+hierarchical    mid  Edge degrad. vs Cluster                 8.1623e-37    +1.000       large    YES
+hierarchical   high  Node failure vs Edge degrad.            1.2253e-31    -0.976       large    YES
+hierarchical   high  Node failure vs Cluster                 2.2942e-01    -0.100  negligible     no
+hierarchical   high  Edge degrad. vs Cluster                 4.2694e-33    +0.981       large    YES
+
+────────────────────────────────────────────────────────────────────────
+ГІПОТЕЗА H5: cluster < node_failure (за ρ та R_rb)
+────────────────────────────────────────────────────────────────────────
+
+Porівняння ρ: підтверджено 0 з 6 валідних тестів
+
+Деталі по конфігураціях:
+  dense           low:  p=3.5459e-01  Cliff_d=+0.076  → несуттєво
+  dense           mid:  p=2.7300e-01  Cliff_d=+0.090  → несуттєво
+  dense          high:  p=3.3786e-03  Cliff_d=+0.240  → несуттєво
+  hierarchical    low:  p=8.1028e-01  Cliff_d=+0.020  → несуттєво
+  hierarchical    mid:  p=5.1464e-03  Cliff_d=+0.232  → несуттєво
+  hierarchical   high:  p=2.2942e-01  Cliff_d=-0.100  → несуттєво
+
+R_rb порівняння cluster vs node_failure:
+  Topology        Int   NF R_rb   CL R_rb   CL lower?
+  hierarchical    low    0.6667    0.6818          NO
+  hierarchical    mid    0.4242    0.4545          NO
+  hierarchical   high    0.2424    0.4242          NO
+  dense           low    0.9000    0.9000          NO
+  dense           mid    0.8000    0.7200         YES
+  dense          high    0.7000    0.6000         YES
+
+────────────────────────────────────────────────────────────────────────
+ВИСНОВОК
+────────────────────────────────────────────────────────────────────────
+
+H5 НЕ ПІДТВЕРДЖЕНА: 0/6 тестових пар з cluster<node_failure
+
+ІНТЕРПРЕТАЦІЯ (target_fraction v2):
+  Після нормалізації 'дози' збою (однакова частка вузлів для обох типів)
+  cluster і node_failure дають статистично рівнозначний ефект на ρ.
+  Попередні результати (r_clust=1,2,3) показали H5 для dense через те, що
+  r_clust=2 в щільній мережі вбивав набагато більше вузлів (~80%), ніж
+  p_v=0.20 (лише 20%). Порівняння 'яблук з апельсинами' було некоректним.
+
+Ключові спостереження (v2 з target_fraction):
+  1. Cluster vs node_failure при рівній 'дозі' (p_v≈target_fraction):
+     статистично неrozрізнювані за ρ (всі p > Bonferroni α).
+     Cliff's delta < 0.25 (small/negligible) для всіх 6 пар.
+  2. Головний контраст — між edge_degradation і вузловими типами:
+     edge_degradation має ρ=1.0 при low/mid (N/A для ρ), але R_rb відрізняється
+     від node_failure при high (hierarchical: 0.9485 vs 0.2424).
+  3. Node_failure залишається найгіршим типом за ρ: ρ_med=0.931 при high,
+     cluster та node_failure рівнозначні (cluster: 0.937).
+  4. R_rb фіксує різницю краще: dense/cluster/mid: 0.720 vs NF: 0.800,
+     dense/cluster/high: 0.600 vs NF: 0.700 — кластер дещо гірший за R_rb.
+  5. Edge_degradation — виняток: лише через R_rb при high (p_e=0.40, γ=0.60)
+     помітний ефект; ρ=1.0 для всіх конфігурацій dense і low/mid hierarchical.

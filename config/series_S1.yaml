@@ -1,0 +1,39 @@
+# Серія S1: базове порівняння топологій
+# Протокол S1: оцінити чистий вплив топології на Q(t) і resilience
+# Що варіюємо: тип мережі (4 варіанти)
+# Що фіксуємо: N=50, H=4, node_failure, p_v=0.20, random recovery
+
+series: S1
+description: "Базове порівняння 4 топологій мережі поставок"
+
+network:
+  N: 50
+  H: 4
+  c_base: 100
+  supply_surplus: 1.2
+
+disruption:
+  type: node_failure
+  p_v: 0.20
+
+recovery:
+  strategy: random
+  mu: 1
+  w: 0.0
+
+simulation:
+  T_max: 100
+  Q_target_frac: 0.95
+  M: 100
+
+metrics:
+  alpha_cvar: 0.10
+  bootstrap_B: 1000
+
+# Перебір параметрів (runner генерує декартовий добуток)
+sweep:
+  topology:
+    - hierarchical
+    - hub
+    - reserved
+    - dense

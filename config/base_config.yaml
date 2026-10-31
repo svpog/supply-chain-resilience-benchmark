@@ -1,0 +1,37 @@
+# Базова конфігурація параметрів моделі
+# Розділ 12 Math Spec (зведена таблиця параметрів)
+# Усі серії успадковують ці значення і перевизначають потрібні.
+
+network:
+  N: 50          # кількість вузлів (базовий масштаб)
+  H: 4           # кількість рівнів (для ієрархічних і резервованих)
+  c_base: 100    # базова capacity ребра (uniform-режим)
+  supply_surplus: 1.2  # надлишок пропозиції: sum(s_i) = 1.2 * sum(d_j)
+
+disruption:
+  type: node_failure   # node_failure | edge_degradation | cluster
+  p_v: 0.20            # ймовірність відмови вузла (Bernoulli)
+  p_e: 0.20            # ймовірність деградації ребра (Bernoulli)
+  gamma: 0.40          # рівень деградації capacity при edge_degradation
+  r_clust: 2           # радіус BFS-кулі при cluster
+
+recovery:
+  strategy: random     # єдина стратегія у 1-й статті
+  mu: 1                # швидкість recovery (один елемент за крок)
+  w: 0.0               # частка незворотних відмов (0 базово; S6 варіює)
+
+simulation:
+  T_max: 100           # горизонт симуляції
+  Q_target_frac: 0.95  # поріг відновлення: Q_target = 0.95 * Q(0)
+  M: 100               # кількість прогонів Monte Carlo на конфігурацію
+
+metrics:
+  alpha_cvar: 0.10     # рівень CVaR (базово 0.10; S6 варіює)
+  bootstrap_B: 1000    # кількість bootstrap-повторень для CI
+
+output:
+  raw_csv: results/raw/raw_results.csv
+  q_curves_parquet: results/raw/Q_curves.parquet
+  aggregated_csv: results/aggregated/aggregated_results.csv
+  metadata_json: results/raw/run_metadata.json
+  figures_dir: results/figures/

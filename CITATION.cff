@@ -1,0 +1,47 @@
+cff-version: 1.2.0
+message: "If you use this software or the data it produces, please cite the article below."
+title: "Supply chain resilience under stochastic disruptions: graph-flow model and computational framework"
+abstract: >-
+  Reproducible computational framework for assessing the structural and functional
+  resilience of supply chain networks under stochastic disruptions. The network is a
+  directed capacitated graph; functionality is the normalized maximum flow from a
+  supersource to a supersink; resilience is evaluated over a performance trajectory by
+  an integral index, robustness, final recovery level and a lower-tail (CVaR) risk
+  metric under a Monte Carlo protocol.
+type: software
+version: 1.0.0
+date-released: "2026-11-01"
+license: MIT
+repository-code: "https://github.com/svpog/supply-chain-resilience-benchmark"
+keywords:
+  - supply chain resilience
+  - graph-flow model
+  - maximum flow
+  - stochastic disruptions
+  - Monte Carlo simulation
+  - conditional value at risk
+  - network recovery
+authors:
+  - family-names: Pohorielov
+    given-names: Stanislav V.
+    orcid: "https://orcid.org/0000-0002-0189-8655"
+    affiliation: "National Technical University Kharkiv Polytechnic Institute"
+  - family-names: Yanovskyi
+    given-names: Oleksii V.
+    orcid: "https://orcid.org/0000-0002-4310-2843"
+    affiliation: "National Technical University Kharkiv Polytechnic Institute"
+preferred-citation:
+  type: article
+  title: "Supply chain resilience under stochastic disruptions"
+  journal: "Applied Aspects of Information Technology"
+  year: 2026
+  volume: 9
+  issue: 4
+  doi: "10.15276/aait.09.2026.XX"
+  authors:
+    - family-names: Pohorielov
+      given-names: Stanislav V.
+      orcid: "https://orcid.org/0000-0002-0189-8655"
+    - family-names: Yanovskyi
+      given-names: Oleksii V.
+      orcid: "https://orcid.org/0000-0002-4310-2843"

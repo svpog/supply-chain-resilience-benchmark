@@ -1,0 +1,62 @@
+# Серія S2: вплив рівня резервування K_res на resilience
+# Гіпотези H2, H3 (Math Spec розділ 8):
+#   H2: збільшення K_res → монотонне зростання ρ_med і ρ_CVaR з насиченням.
+#   H3: ρ_CVaR покращується від резервування СИЛЬНІШЕ, ніж ρ_med
+#       (Δρ_CVaR / Δρ_med > 1 для більшості приростів K_res).
+#
+# Що варіюємо: K_res ∈ {0, 1, 2, 3} для топології reserved.
+#   K_res=0 — чисте дерево (= hierarchical без backup-ребер).
+#   K_res=1..3 — зростаюче резервування.
+# Контроль: hierarchical, hub, dense запускаються з K_res=0 (без змін).
+#   Для них K_res не передається у генератор — мережа незмінна при будь-якому K_res.
+#
+# Дизайн: 4 топології × 4 K_res = 16 конфігурацій × 100 прогонів = 1600 прогонів.
+# Аналіз використовує reserved×{0,1,2,3} для H2/H3 та інші топології як базові лінії.
+
+series: S2
+description: "Вплив коефіцієнта резервування K_res на resilience (H2, H3)"
+
+network:
+  N: 50
+  H: 4
+  b: 3
+  K_res: 2       # дефолт — перевизначається sweep для reserved
+  h: 3           # для hub
+  k_avg: 5.0     # для dense
+  c_base: 100.0
+
+disruption:
+  type: node_failure
+  mode: random
+  p_v: 0.20
+  p_e: 0.20
+  gamma: 0.40
+  r_clust: 2
+
+recovery:
+  strategy: random
+  mu: 1
+  w: 0.0
+
+simulation:
+  T_max: 100
+  Q_target_frac: 0.95
+  omega: 1.0
+
+metrics:
+  alpha_cvar: 0.10
+  bootstrap_B: 1000
+
+output: {}
+
+sweep:
+  topology:
+    - reserved      # K_res має ефект лише тут
+    - hierarchical  # контроль: K_res ігнорується генератором
+    - hub           # контроль: K_res ігнорується генератором
+    - dense         # контроль: K_res ігнорується генератором
+  K_res:
+    - 0             # чисте дерево (= hierarchical для reserved)
+    - 1
+    - 2
+    - 3

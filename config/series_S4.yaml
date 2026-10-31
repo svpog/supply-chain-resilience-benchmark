@@ -1,0 +1,64 @@
+# Серія S4: вплив типу та інтенсивності збоїв на resilience
+# Гіпотеза H5 (Math Spec розділ 8):
+#   Кластерні збої дають НИЖЧУ resilience ніж Bernoulli-вузлові
+#   при еквівалентному рівні пошкодження.
+#
+# ДИЗАЙН: 2 топології x 3 типи x 3 рівні = 18 конфігурацій x M=100
+# Рівні low/mid/high задані парами параметрів, не cartesian product.
+#
+# КОРЕКЦІЯ cluster intensity (v2):
+#   Замість r_clust ∈ {1,2,3} (топологічно-залежний BFS-радіус) використовується
+#   target_fraction ∈ {0.10, 0.20, 0.30} — цільова частка вузлів N.
+#   Це дає ~5/10/15 вузлів збою для N=50, незалежно від топології.
+
+series: S4
+description: "Вплив типу та інтенсивності збоїв на resilience (H5)"
+
+network:
+  N: 50
+  H: 4
+  b: 3
+  K_res: 2
+  h: 3
+  k_avg: 5.0
+  c_base: 100.0
+
+disruption:
+  type: node_failure
+  mode: random
+  p_v: 0.20
+  p_e: 0.20
+  gamma: 0.40
+  r_clust: 2
+  target_fraction: 0.20
+
+recovery:
+  strategy: random
+  mu: 1
+  w: 0.0
+
+simulation:
+  T_max: 100
+  Q_target_frac: 0.95
+  omega: 1.0
+
+metrics:
+  alpha_cvar: 0.10
+  bootstrap_B: 1000
+
+output: {}
+
+sweep:
+  topology:
+    - hierarchical
+    - dense
+  disruption:
+    - {type: node_failure, mode: random, p_v: 0.10}
+    - {type: node_failure, mode: random, p_v: 0.20}
+    - {type: node_failure, mode: random, p_v: 0.30}
+    - {type: edge_degradation, mode: random, p_e: 0.20, gamma: 0.25}
+    - {type: edge_degradation, mode: random, p_e: 0.30, gamma: 0.40}
+    - {type: edge_degradation, mode: random, p_e: 0.40, gamma: 0.60}
+    - {type: cluster, mode: random, target_fraction: 0.10}
+    - {type: cluster, mode: random, target_fraction: 0.20}
+    - {type: cluster, mode: random, target_fraction: 0.30}

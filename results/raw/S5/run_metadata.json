@@ -1,0 +1,9 @@
+{
+  "series": "S5",
+  "n_configs": 16,
+  "n_runs_per_config": 100,
+  "total_runs": 1600,
+  "valid_runs": 1559,
+  "elapsed_seconds": 276.27,
+  "timestamp": "2026-05-05T14:02:06"
+}

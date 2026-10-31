@@ -1,0 +1,53 @@
+# Серія S5: масштабний аналіз — стійкість висновків до зміни N
+# Гіпотеза H6 (Math Spec розділ 8):
+#   Якісні висновки H1 і H2 зберігаються при збільшенні N.
+#   Рейтинг топологій за ρ_med не змінюється з N;
+#   ρ_CVaR може бути більш чутливим індикатором.
+#
+# ДИЗАЙН: 4 N × 4 топології = 16 конфігурацій × 100 прогонів = 1600 прогонів.
+# Постійні: H=4, b=3, K_res=2, h=3, k_avg=5.0, p_v=0.20, T=100, M=100, c_base=100.
+# M-cap: N≤120 → 100; N>120 → 50 (логіка у runner).
+
+series: S5
+description: "Масштабний аналіз: стійкість рейтингу топологій при N ∈ {30,50,80,120}"
+
+network:
+  H: 4
+  b: 3
+  K_res: 2
+  h: 3
+  k_avg: 5.0
+  c_base: 100.0
+
+disruption:
+  type: node_failure
+  mode: random
+  p_v: 0.20
+
+recovery:
+  strategy: random
+  mu: 1
+  w: 0.0
+
+simulation:
+  T_max: 100
+  Q_target_frac: 0.95
+  omega: 1.0
+
+metrics:
+  alpha_cvar: 0.10
+  bootstrap_B: 1000
+
+output: {}
+
+sweep:
+  topology:
+    - hierarchical
+    - reserved
+    - hub
+    - dense
+  N:
+    - 30
+    - 50
+    - 80
+    - 120

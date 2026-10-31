@@ -1,0 +1,16 @@
+# Core dependencies for the experiments of Article 1
+networkx>=3.0
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+matplotlib>=3.7
+seaborn>=0.12
+pyyaml>=6.0
+pyarrow>=12.0
+tqdm>=4.65
+pytest>=7.0
+
+# Optional, only for the reinforcement-learning components of later articles
+# torch>=2.9.0
+# gymnasium>=1.2.3
+# stable-baselines3>=2.8.0

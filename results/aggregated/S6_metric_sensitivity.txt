@@ -1,0 +1,94 @@
+==============================================================================
+S6.A-C: METRIC SENSITIVITY ON CANONICAL S1
+==============================================================================
+
+Дані: results/raw/S1/raw_results.csv і results/raw/S1/Q_curves.parquet
+Валідні S1 прогони: 393 / 400
+S6.C: для ω=0.0 і ω=0.5 виконано deterministic replay тих самих S1 seed-ів,
+бо канонічний Q_curves.parquet зберігає лише потокову Q, без LCC(t)/N.
+Коміт не створювався.
+
+------------------------------------------------------------------------------
+BASELINE S1 STOCHASTIC METRICS (for reference)
+------------------------------------------------------------------------------
+Topology           n    rho_med   rho_CVaR_0.10   rho_IQR
+dense           100   0.9900        0.9657     0.0092
+hub             100   0.9851        0.9294     0.0269
+reserved         98   0.9688        0.9188     0.0304
+hierarchical     95   0.9661        0.9142     0.0254
+
+------------------------------------------------------------------------------
+S6.A — alpha sensitivity of rho_CVaR_alpha
+------------------------------------------------------------------------------
+Topology        alpha      n   rho_CVaR     CI 95%
+dense          0.05    100   0.9599   [0.9474, 0.9703]
+hub            0.05    100   0.9195   [0.9132, 0.9343]
+reserved       0.05     98   0.9091   [0.8944, 0.9239]
+hierarchical   0.05     95   0.8990   [0.8906, 0.9206]
+dense          0.10    100   0.9657   [0.9578, 0.9732]
+hub            0.10    100   0.9294   [0.9197, 0.9458]
+reserved       0.10     98   0.9188   [0.9076, 0.9301]
+hierarchical   0.10     95   0.9142   [0.8995, 0.9295]
+dense          0.20    100   0.9722   [0.9662, 0.9776]
+hub            0.20    100   0.9438   [0.9332, 0.9547]
+reserved       0.20     98   0.9283   [0.9201, 0.9366]
+hierarchical   0.20     95   0.9275   [0.9170, 0.9387]
+
+Rankings by alpha:
+  alpha=0.05: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+  alpha=0.10: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+  alpha=0.20: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+
+------------------------------------------------------------------------------
+S6.B — T sensitivity of rho_med from truncated Q-curves
+------------------------------------------------------------------------------
+Topology        T_eff      n   rho_med      CI 95%
+dense             30    100   0.9674   [0.9610, 0.9710]
+hub               30    100   0.9516   [0.9357, 0.9574]
+reserved          30     98   0.8983   [0.8778, 0.9115]
+hierarchical      30     95   0.8895   [0.8719, 0.9110]
+dense             50    100   0.9802   [0.9765, 0.9824]
+hub               50    100   0.9706   [0.9598, 0.9741]
+reserved          50     98   0.9382   [0.9251, 0.9462]
+hierarchical      50     95   0.9329   [0.9210, 0.9453]
+dense            100    100   0.9900   [0.9880, 0.9911]
+hub              100    100   0.9851   [0.9798, 0.9870]
+reserved         100     98   0.9688   [0.9632, 0.9727]
+hierarchical     100     95   0.9661   [0.9601, 0.9724]
+
+Rankings by T_eff:
+  T_eff= 30: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+  T_eff= 50: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+  T_eff=100: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+
+------------------------------------------------------------------------------
+S6.C — omega sensitivity of composite Q(t; omega)
+------------------------------------------------------------------------------
+Q(t;ω) = ω·F(t)/F(0) + (1−ω)·LCC(t)/N
+Topology        omega      n   rho_med      CI 95%
+dense          0.0     100   0.9891   [0.9891, 0.9911]
+hub            0.0     100   0.9875   [0.9846, 0.9891]
+reserved       0.0      98   0.9774   [0.9739, 0.9806]
+hierarchical   0.0      95   0.6477   [0.6176, 0.6954]
+dense          0.5     100   0.9898   [0.9886, 0.9908]
+hub            0.5     100   0.9859   [0.9824, 0.9885]
+reserved       0.5      98   0.9735   [0.9666, 0.9753]
+hierarchical   0.5      95   0.8067   [0.7938, 0.8139]
+dense          1.0     100   0.9900   [0.9880, 0.9911]
+hub            1.0     100   0.9851   [0.9802, 0.9869]
+reserved       1.0      98   0.9688   [0.9617, 0.9722]
+hierarchical   1.0      95   0.9661   [0.9601, 0.9727]
+
+Rankings by omega:
+  omega=0.0: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+  omega=0.5: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+  omega=1.0: dense > hub > reserved > hierarchical   expected canonical ranking? YES
+
+------------------------------------------------------------------------------
+CONCLUSION
+------------------------------------------------------------------------------
+Alpha sensitivity robust at alpha=0.05 and alpha=0.20: YES.
+T sensitivity robust at T_eff=30 and T_eff=50: YES.
+Omega sensitivity robust across omega=0.0, 0.5, 1.0: YES.
+H1 ranking is robust to alpha, T_eff, and omega choices in S6.A-C.
+S6.D (irreversible fraction w) was run separately; see results/aggregated/S6D_irreversibility_report.txt.

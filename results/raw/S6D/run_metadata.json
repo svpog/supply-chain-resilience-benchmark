@@ -1,0 +1,20 @@
+{
+  "series": "S6D",
+  "design": "S6.D irreversibility sensitivity",
+  "topologies": [
+    "hierarchical",
+    "reserved"
+  ],
+  "w_values": [
+    0.0,
+    0.1,
+    0.25,
+    0.5
+  ],
+  "n_runs_per_config": 200,
+  "n_configs": 8,
+  "total_runs": 1600,
+  "valid_runs": 1540,
+  "elapsed_seconds": 181.63,
+  "timestamp": "2026-05-07T11:34:35"
+}

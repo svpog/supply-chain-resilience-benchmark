@@ -1,0 +1,32 @@
+series: S5mu
+description: 'S5 контроль ремонтного ресурсу: N=120, mu=4 (mu ~ N/30)'
+network:
+  H: 4
+  b: 3
+  K_res: 2
+  h: 3
+  k_avg: 5.0
+  c_base: 100.0
+  N: 120
+disruption:
+  type: node_failure
+  mode: random
+  p_v: 0.2
+recovery:
+  strategy: random
+  mu: 4
+  w: 0.0
+simulation:
+  T_max: 100
+  Q_target_frac: 0.95
+  omega: 1.0
+metrics:
+  alpha_cvar: 0.1
+  bootstrap_B: 1000
+output: {}
+sweep:
+  topology:
+  - hierarchical
+  - reserved
+  - hub
+  - dense

@@ -1,0 +1,30 @@
+{
+  "title": "Supply chain resilience under stochastic disruptions: graph-flow model and computational framework",
+  "upload_type": "software",
+  "license": "MIT",
+  "access_right": "open",
+  "version": "1.0.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Pohorielov, Stanislav V.",
+      "orcid": "0000-0002-0189-8655",
+      "affiliation": "National Technical University \"Kharkiv Polytechnic Institute\""
+    },
+    {
+      "name": "Yanovskyi, Oleksii V.",
+      "orcid": "0000-0002-4310-2843",
+      "affiliation": "National Technical University \"Kharkiv Polytechnic Institute\""
+    }
+  ],
+  "keywords": [
+    "supply chain resilience",
+    "graph-flow model",
+    "maximum flow",
+    "stochastic disruptions",
+    "Monte Carlo simulation",
+    "conditional value at risk",
+    "network recovery"
+  ],
+  "description": "Code, configurations and experimental results supporting the article \"Supply chain resilience under stochastic disruptions\" (Applied Aspects of Information Technology, 2026, Vol. 9, No. 4). Contains the network generators, the stochastic disruption models, the baseline recovery protocol, the metric implementations, the statistical analysis scripts, and the raw and aggregated results of all five experimental stages reported in the article."
+}

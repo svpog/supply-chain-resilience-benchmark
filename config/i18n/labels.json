@@ -1,0 +1,409 @@
+{
+  "common": {
+    "topology": {"uk": "Топологія", "en": "Topology"},
+    "strategy": {"uk": "Стратегія recovery", "en": "Recovery strategy"},
+    "rho": {"uk": "ρ", "en": "ρ"},
+    "rho_med": {"uk": "ρ_med", "en": "ρ_med"},
+    "rho_cvar": {"uk": "ρ_CVaR_0.10", "en": "ρ_CVaR_0.10"},
+    "r_rb": {"uk": "R_rb", "en": "R_rb"},
+    "ratio": {"uk": "Δρ_CVaR / Δρ_med", "en": "Δρ_CVaR / Δρ_med"},
+    "dense": {"uk": "Щільна", "en": "Dense"},
+    "hub": {"uk": "Хабова", "en": "Hub"},
+    "reserved": {"uk": "Резервована", "en": "Reserved"},
+    "hierarchical": {"uk": "Ієрархічна", "en": "Hierarchical"},
+    "random": {"uk": "Випадкова", "en": "Random"},
+    "centrality_degree": {"uk": "За степенем", "en": "Degree centrality"},
+    "centrality_betweenness": {"uk": "За посередництвом", "en": "Betweenness centrality"},
+    "centrality_pagerank": {"uk": "PageRank", "en": "PageRank"},
+    "flow_greedy": {"uk": "Потоково-жадібна", "en": "Flow-greedy"}
+  },
+  "R1": {
+    "strategy_comparison": {
+      "title": {
+        "uk": "R1: порівняння стратегій recovery (M=100)",
+        "en": "R1: recovery strategy comparison (M=100)"
+      },
+      "y_label": {
+        "uk": "ρ (інтегральна resilience)",
+        "en": "ρ (integral resilience)"
+      }
+    },
+    "cvar_dominance": {
+      "title": {
+        "uk": "R1: ρ_CVaR_0.10 за стратегіями",
+        "en": "R1: ρ_CVaR_0.10 by strategy"
+      }
+    },
+    "delta_heatmap": {
+      "title": {
+        "uk": "R1: Δρ_med між стратегіями",
+        "en": "R1: Δρ_med between strategies"
+      }
+    },
+    "ratio_cvar_med": {
+      "title": {
+        "uk": "R1: хвостовий виграш проти медіанного",
+        "en": "R1: tail gain versus median gain"
+      }
+    }
+  },
+  "R2": {
+    "rho_vs_Kres": {
+      "title": {
+        "uk": "R2: ρ_med vs рівень резервування K_res",
+        "en": "R2: ρ_med vs redundancy level K_res"
+      },
+      "x_label": {
+        "uk": "K_res (рівень резервування)",
+        "en": "K_res (redundancy level)"
+      },
+      "y_label": {
+        "uk": "ρ_med (медіанна resilience)",
+        "en": "ρ_med (median resilience)"
+      }
+    },
+    "cvar_vs_Kres": {
+      "title": {
+        "uk": "R2: ρ_CVaR_0.10 vs K_res (центральний рисунок)",
+        "en": "R2: ρ_CVaR_0.10 vs K_res (central figure)"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10 (хвостова resilience)",
+        "en": "ρ_CVaR_0.10 (tail resilience)"
+      }
+    },
+    "spearman_comparison": {
+      "title": {
+        "uk": "R2: Spearman r(K_res, ρ) за стратегіями",
+        "en": "R2: Spearman r(K_res, ρ) by strategy"
+      },
+      "y_label": {
+        "uk": "Кореляція Спірмена",
+        "en": "Spearman correlation"
+      },
+      "article1_reference": {
+        "uk": "Стаття 1, S2 (r=0.63, n.s.)",
+        "en": "Article 1, S2 (r=0.63, n.s.)"
+      }
+    },
+    "delta_rho_per_Kres": {
+      "title": {
+        "uk": "R2: Δρ_CVaR(flow_greedy − random) за K_res",
+        "en": "R2: Δρ_CVaR(flow_greedy − random) by K_res"
+      }
+    }
+  },
+  "R2_prime": {
+    "rho_vs_cbackup": {
+      "title": {
+        "uk": "R2': ρ_med vs capacity backup-ребер",
+        "en": "R2': ρ_med vs backup edge capacity"
+      },
+      "x_label": {
+        "uk": "c_backup (capacity backup-ребра)",
+        "en": "c_backup (backup edge capacity)"
+      },
+      "y_label": {
+        "uk": "ρ_med",
+        "en": "ρ_med"
+      }
+    },
+    "cvar_vs_cbackup": {
+      "title": {
+        "uk": "R2': ρ_CVaR_0.10 vs c_backup (центральний рисунок)",
+        "en": "R2': ρ_CVaR_0.10 vs c_backup (central figure)"
+      }
+    },
+    "strategy_gain": {
+      "title": {
+        "uk": "R2': виграш flow_greedy над random за рівнем capacity",
+        "en": "R2': flow_greedy advantage over random by capacity"
+      },
+      "y_label": {
+        "uk": "Δρ_CVaR (flow_greedy − random)",
+        "en": "Δρ_CVaR (flow_greedy − random)"
+      }
+    },
+    "capacity_ratio": {
+      "title": {
+        "uk": "R2': відношення trunk/backup capacity",
+        "en": "R2': trunk/backup capacity ratio"
+      }
+    }
+  },
+  "R3": {
+    "rho_vs_mu": {
+      "title": {
+        "uk": "R3: ρ_med vs швидкість recovery μ",
+        "en": "R3: ρ_med vs recovery speed μ"
+      },
+      "x_label": {
+        "uk": "μ (швидкість recovery)",
+        "en": "μ (recovery speed)"
+      }
+    },
+    "cvar_vs_mu": {
+      "title": {
+        "uk": "R3: ρ_CVaR_0.10 vs μ (центральний рисунок)",
+        "en": "R3: ρ_CVaR_0.10 vs μ (central figure)"
+      }
+    },
+    "strategy_gain_vs_mu": {
+      "title": {
+        "uk": "R3: виграш flow_greedy над random за швидкістю μ",
+        "en": "R3: flow_greedy advantage over random by speed μ"
+      },
+      "y_label": {
+        "uk": "Δρ_CVaR (flow_greedy − random)",
+        "en": "Δρ_CVaR (flow_greedy − random)"
+      }
+    },
+    "tr_vs_mu": {
+      "title": {
+        "uk": "R3: час відновлення t_r vs μ",
+        "en": "R3: recovery time t_r vs μ"
+      },
+      "y_label": {
+        "uk": "t_r (кроки до Q ≥ 0.95)",
+        "en": "t_r (steps to Q ≥ 0.95)"
+      }
+    }
+  },
+  "D2": {
+    "severity_check": {
+      "title": {
+        "uk": "D2: перевірка жорсткості edge_degradation",
+        "en": "D2: edge_degradation severity check"
+      },
+      "x_label": {
+        "uk": "Підсерія",
+        "en": "Subseries"
+      },
+      "y_label": {
+        "uk": "R_rb (миттєва robustness)",
+        "en": "R_rb (instant robustness)"
+      }
+    },
+    "cvar_vs_Kres": {
+      "title": {
+        "uk": "D2: ρ_CVaR_0.10 vs K_res при edge_degradation",
+        "en": "D2: ρ_CVaR_0.10 vs K_res under edge_degradation"
+      },
+      "x_label": {
+        "uk": "K_res (рівень резервування)",
+        "en": "K_res (redundancy level)"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10",
+        "en": "ρ_CVaR_0.10"
+      }
+    },
+    "strategy_gain": {
+      "title": {
+        "uk": "D2: приріст ρ_CVaR від K_res=0 до K_res=3",
+        "en": "D2: ρ_CVaR gain from K_res=0 to K_res=3"
+      },
+      "y_label": {
+        "uk": "Δρ_CVaR (K_res=3 − K_res=0)",
+        "en": "Δρ_CVaR (K_res=3 − K_res=0)"
+      }
+    },
+    "canonical": {
+      "uk": "D2a: канонічне",
+      "en": "D2a: canonical"
+    },
+    "enhanced": {
+      "uk": "D2b: підсилене",
+      "en": "D2b: enhanced"
+    }
+  },
+  "R4": {
+    "cvar_by_topology": {
+      "title": {
+        "uk": "R4: ρ_CVaR за топологією і типом збою",
+        "en": "R4: ρ_CVaR by topology and disruption type"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10",
+        "en": "ρ_CVaR_0.10"
+      }
+    },
+    "strategy_gain_by_disruption": {
+      "title": {
+        "uk": "R4: виграш flow_greedy за типом збою",
+        "en": "R4: flow_greedy advantage by disruption type"
+      },
+      "y_label": {
+        "uk": "Δρ_CVaR (flow_greedy − random)",
+        "en": "Δρ_CVaR (flow_greedy − random)"
+      }
+    },
+    "backup_activation": {
+      "title": {
+        "uk": "R4: активація backup-маршрутів за типом збою (HR3'')",
+        "en": "R4: backup route activation by disruption type (HR3'')"
+      },
+      "y_label": {
+        "uk": "Δρ_CVaR (reserved − hierarchical)",
+        "en": "Δρ_CVaR (reserved − hierarchical)"
+      }
+    },
+    "disruption_severity": {
+      "title": {
+        "uk": "R4: жорсткість різних типів збоїв",
+        "en": "R4: severity of disruption types"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10",
+        "en": "ρ_CVaR_0.10"
+      }
+    },
+    "disruption_types": {
+      "node_failure": {"uk": "Відмова вузлів", "en": "Node failure"},
+      "edge_degradation": {"uk": "Деградація ребер", "en": "Edge degradation"},
+      "cluster": {"uk": "Кластерний збій", "en": "Cluster"}
+    }
+  },
+  "M1": {
+    "random_agent": {"uk": "Випадкові агенти", "en": "Random agents"},
+    "local_greedy": {"uk": "Локально-жадібні", "en": "Local greedy"},
+    "local_centrality": {"uk": "Локальна центральність", "en": "Local centrality"},
+    "coord_greedy": {"uk": "Координовано-жадібні", "en": "Coordinated greedy"},
+    "strategy_comparison": {
+      "title": {
+        "uk": "M1: порівняння multi-agent recovery стратегій",
+        "en": "M1: multi-agent recovery strategy comparison"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10",
+        "en": "ρ_CVaR_0.10"
+      }
+    },
+    "delta_rho_dec": {
+      "title": {
+        "uk": "M1: ціна децентралізації",
+        "en": "M1: decentralization gap"
+      },
+      "y_label": {
+        "uk": "Δρ_dec = ρ_CVaR(flow_greedy R1) − ρ_CVaR(best_agent)",
+        "en": "Δρ_dec = ρ_CVaR(flow_greedy R1) − ρ_CVaR(best_agent)"
+      }
+    },
+    "cliff_delta_heatmap": {
+      "title": {
+        "uk": "M1: Cliff δ між стратегіями",
+        "en": "M1: Cliff δ between strategies"
+      }
+    },
+    "vs_M0": {
+      "title": {
+        "uk": "M1: K=3 coord_greedy проти M0 K=1 flow_greedy_local(r=2)",
+        "en": "M1: K=3 coord_greedy vs M0 K=1 flow_greedy_local(r=2)"
+      }
+    }
+  },
+  "M3": {
+    "independent": {"uk": "Незалежні", "en": "Independent"},
+    "token": {"uk": "Токен", "en": "Token"},
+    "auction": {"uk": "Аукціон", "en": "Auction"},
+    "broadcast": {"uk": "Broadcast", "en": "Broadcast"},
+    "mode_comparison": {
+      "title": {
+        "uk": "M3: порівняння механізмів координації",
+        "en": "M3: coordination mechanism comparison"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10",
+        "en": "ρ_CVaR_0.10"
+      }
+    },
+    "coordination_value": {
+      "title": {
+        "uk": "M3: цінність координації відносно independent",
+        "en": "M3: coordination value relative to independent"
+      },
+      "y_label": {
+        "uk": "CV(mode) = ρ_CVaR(mode) − ρ_CVaR(independent)",
+        "en": "CV(mode) = ρ_CVaR(mode) − ρ_CVaR(independent)"
+      }
+    },
+    "cost_benefit": {
+      "title": {
+        "uk": "M3: виграш координації та комунікаційна складність",
+        "en": "M3: coordination gain and communication cost"
+      },
+      "x_label": {
+        "uk": "Відносна комунікаційна складність",
+        "en": "Relative communication cost"
+      },
+      "y_label": {
+        "uk": "CV(mode)",
+        "en": "CV(mode)"
+      }
+    },
+    "cliff_heatmap": {
+      "title": {
+        "uk": "M3: Cliff δ між режимами координації",
+        "en": "M3: Cliff δ between coordination modes"
+      }
+    }
+  },
+  "R5": {
+    "rho_vs_N": {
+      "title": {
+        "uk": "R5: ρ_med vs розмір мережі N",
+        "en": "R5: ρ_med vs network size N"
+      },
+      "x_label": {
+        "uk": "N (розмір мережі)",
+        "en": "N (network size)"
+      },
+      "y_label": {
+        "uk": "ρ_med",
+        "en": "ρ_med"
+      }
+    },
+    "cvar_vs_N": {
+      "title": {
+        "uk": "R5: ρ_CVaR_0.10 vs N (центральний рисунок)",
+        "en": "R5: ρ_CVaR_0.10 vs N (central figure)"
+      },
+      "x_label": {
+        "uk": "N (розмір мережі)",
+        "en": "N (network size)"
+      },
+      "y_label": {
+        "uk": "ρ_CVaR_0.10",
+        "en": "ρ_CVaR_0.10"
+      }
+    },
+    "strategy_gain_vs_N": {
+      "title": {
+        "uk": "R5: виграш flow_greedy за розміром N",
+        "en": "R5: flow_greedy advantage by network size N"
+      },
+      "x_label": {
+        "uk": "N (розмір мережі)",
+        "en": "N (network size)"
+      },
+      "y_label": {
+        "uk": "Δρ_CVaR (flow_greedy − random)",
+        "en": "Δρ_CVaR (flow_greedy − random)"
+      }
+    },
+    "F0_scaling": {
+      "title": {
+        "uk": "R5: масштабування F_0 з N",
+        "en": "R5: F_0 scaling with N"
+      },
+      "x_label": {
+        "uk": "N (розмір мережі)",
+        "en": "N (network size)"
+      },
+      "y_label": {
+        "uk": "F_0 (базовий max-flow)",
+        "en": "F_0 (baseline max-flow)"
+      }
+    }
+  }
+}
