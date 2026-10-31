@@ -28,7 +28,7 @@ authors:
     affiliation: "National Technical University Kharkiv Polytechnic Institute"
   - family-names: Yanovskyi
     given-names: Oleksii V.
-    orcid: "https://orcid.org/0000-0002-4310-2843"
+    orcid: "https://orcid.org/0009-0002-4310-2843"
     affiliation: "National Technical University Kharkiv Polytechnic Institute"
 preferred-citation:
   type: article
@@ -37,11 +37,10 @@ preferred-citation:
   year: 2026
   volume: 9
   issue: 4
-  doi: "10.15276/aait.09.2026.XX"
   authors:
     - family-names: Pohorielov
       given-names: Stanislav V.
       orcid: "https://orcid.org/0000-0002-0189-8655"
     - family-names: Yanovskyi
       given-names: Oleksii V.
-      orcid: "https://orcid.org/0000-0002-4310-2843"
+      orcid: "https://orcid.org/0009-0002-4310-2843"
